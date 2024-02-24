@@ -97,7 +97,7 @@ create table if not exists transactions(
     box_id int not null,
     trainee_id int not null,
     date_time date not null,
-    transactions_type varchar(20) not null,
+    transactions_type varchar(30) not null,
     primary key (transactions_id),
     foreign key (box_id) references boxes(box_id),
     foreign key (trainee_id) references trainees(trainee_id)
