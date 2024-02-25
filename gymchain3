@@ -17,9 +17,12 @@ order by user.fecha_alta_sistema;
 -- Creación de la vista "Clientes por cantidad de clases"
 create view clases_clientes as 
 select 
-	trainee_id,
-    count(status) as cantidad_de_clases
+	trainees_clases.trainee_id,
+    trainees.name,
+    count(trainees_clases.status) as cantidad_de_clases
 from trainees_clases
+left join trainees
+on trainees_clases.trainee_id=trainees.trainee_id
 where status = "Present"
 group by trainee_id
 order by cantidad_de_clases desc;
