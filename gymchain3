@@ -1,6 +1,6 @@
 -- Creación de vistas
 
--- Creación de la vista "Clientes por antiguedad"
+-- Creación de la vista "antiguedad_clientes"
 create view antiguedad_clientes as 
 select 
 	trainees.name, 
@@ -14,7 +14,7 @@ order by user.fecha_alta_sistema;
 
 
 
--- Creación de la vista "Clientes por cantidad de clases"
+-- Creación de la vista "clases_clientes"
 create view clases_clientes as 
 select 
 	trainees_clases.trainee_id,
@@ -29,7 +29,7 @@ order by cantidad_de_clases desc;
 
 
 
--- Creación de la vista "Clientes por antiguedad y por cantidad de clases"
+-- Creación de la vista "antiguedad_clases_clientes"
 create view antiguedad_clases_clientes as 
 select 
 	tabla1.name, 
@@ -58,7 +58,7 @@ order by fecha_alta_sistema asc;
 
 
 
--- Creación de la vista "Edad y provincia por cliente" para el área de marketing y ventas
+-- Creación de la vista "marketing" para el área de marketing y ventas
 create view marketing as 
 select 
 	concat(first_name," ",last_name) as name,
@@ -68,7 +68,7 @@ select
 
 
     
--- Creación de la vista "Horas laborales"
+-- Creación de la vista "rrhh"
 create view rrhh as 
 select 
 	coaches.coach_id,
