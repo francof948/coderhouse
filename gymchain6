@@ -1,5 +1,14 @@
 -- Creación de Triggers
+
 --  Creación Trigger "facturas_a"
+create table if not exists facturas_a(
+	transactions_id int not null,
+    box_id int not null,
+    trainee_id int not null,
+    date_time date not null,
+    type varchar(30) not null
+    );
+
 DELIMITER $$
 create trigger facturas_a
 after insert on transactions
@@ -12,7 +21,25 @@ end $$
 DELIMITER ;
 
 
+
 -- Creación Trigger "menores_edad"
+create table if not exists menores_edad(
+	user_id int not null,
+    first_name varchar(20) not null,
+    last_name varchar(20) not null,
+    email varchar(30) not null,
+    celular int not null,
+    phone int, 
+    adress varchar(30), 
+    neighborhood varchar(30), 
+    city varchar (20), 
+    province varchar (20), 
+    dni int not null,
+    sex varchar (9),
+    birthday date not null,
+    fecha_alta_sistema date not null
+    );
+
 DELIMITER $$
 create trigger menores_edad
 after insert on user
