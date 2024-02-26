@@ -1,0 +1,21 @@
+delimiter $$
+create procedure `nuevo_usuario` (
+	IN sp_first_name varchar(20),
+    IN sp_last_name varchar(20),
+    IN sp_email varchar(30),
+    IN sp_celular int,
+    IN sp_phone int,
+    IN sp_adress varchar(30),
+    IN sp_neighborhood varchar(30),
+    IN sp_city varchar (20),
+    IN sp_province varchar (20),
+    IN sp_dni int,
+    IN sp_sex varchar (9),
+    IN sp_birthday date)
+begin
+	if (left((-1) * datediff(sp_birthday,(select current_date()))/365,2)) <= 14
+		then select "No se cumple con la edad mínima de entrenamiento, no se puede registrar el usuario";
+		else insert into user values (null,sp_first_name,sp_last_name,sp_email,sp_celular,sp_phone,sp_adress,sp_neighborhood,sp_city,sp_province,sp_dni,sp_sex,sp_birthday,current_date());
+    end if;
+end $$
+delimiter ;
