@@ -1,0 +1,26 @@
+-- Creación de Triggers
+--  Creación Trigger "facturas_a"
+DELIMITER $$
+create trigger facturas_a
+after insert on transactions
+FOR EACH ROW
+begin
+	if new.type = "Venta Responsable Inscripto"
+    then insert into facturas_a (transactions_id,box_id,trainee_id,date_time,type) value (new.transactions_id,new.box_id,new.trainee_id,new.date_time,new.type);
+    end if;
+end $$
+DELIMITER ;
+
+
+-- Creación Trigger "menores_edad"
+DELIMITER $$
+create trigger menores_edad
+after insert on user
+FOR EACH ROW
+begin
+	if (left((-1) * datediff(new.birthday,(select current_date()))/365,2)) < 18
+    then insert into menores_edad (user_id,first_name,last_name,email,celular,phone,adress,neighborhood,city,province,dni,sex,birthday,fecha_alta_sistema)
+									value (new.user_id,new.first_name,new.last_name,new.email,new.celular,new.phone,new.adress,new.neighborhood,new.city,new.province,new.dni,new.sex,new.birthday,new.fecha_alta_sistema);
+    end if;
+end $$
+DELIMITER ;
